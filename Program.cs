@@ -1,5 +1,4 @@
-﻿using Sprint2.Controllers;
-using Sprint2.SubMenus;
+﻿using Sprint2.SubMenus;
 
 class Program
 {

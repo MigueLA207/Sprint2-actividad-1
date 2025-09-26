@@ -26,7 +26,7 @@ public class UsersMenu
                 Console.WriteLine("Entrada invalida. Por favor ingresa un numero.");
                 option = -1;
             }
-            else if (option < 0 || option > 2)
+            else if (option < 0 || option > 4)
             {
                 Console.WriteLine("Entrada invalida. Por favor intenta de nuevo.");
             }
@@ -39,10 +39,13 @@ public class UsersMenu
                         userController.CreateUser();
                         break;
                     case 2:
+                        userController.ListUsers();
                         break;
                     case 3:
+                        userController.UpdateUser();
                         break;
                     case 4:
+                        userController.DeleteUser();
                         break;
                     case 0:
                         Console.WriteLine("Saliendo del menu de usuarios...");

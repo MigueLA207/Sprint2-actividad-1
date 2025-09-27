@@ -184,3 +184,63 @@ public class MedicalHistoryMenu
     
 }
 
+public class MedicalCareMenu
+{
+    private readonly MedicalCareController mcController = new();
+
+    public void show()
+    {
+        int option = -1;
+        while (option != 0)
+        {
+            Console.Clear();
+            Console.WriteLine("1. Registrar atencion medica.");
+            Console.WriteLine("2. Listar atenciones medicas.");
+            Console.WriteLine("3. Editar atencion medica.");
+            Console.WriteLine("4. Eliminar atencion medica.");
+            Console.WriteLine("0. Salir");
+            
+            Console.Write("\nIngresa una opcion: ");
+            string? input = Console.ReadLine();
+            
+            if (!int.TryParse(input, out option))
+            {
+                Console.WriteLine("Entrada invalida. Por favor ingresa un numero.");
+                option = -1;
+            }
+            else if (option < 0 || option > 4)
+            {
+                Console.WriteLine("Entrada invalida. Por favor intenta de nuevo.");
+            }
+            else
+            {
+                Console.Clear();
+                switch (option)
+                {
+                    case 1:
+                        mcController.CreateMedicalCare();
+                        // vetController.CreateVeterinarian();
+                        break;
+                    case 2:
+                        mcController.ListMedicalCares();
+                        break;
+                    case 3:
+                        // vetController.UpdateVeterinarian();
+                        break;
+                    case 4:
+                        // vetController.DeleteVeterinarian();
+                        break;
+                    case 0:
+                        Console.WriteLine("Saliendo del menu de mascotas...");
+                        break;
+                }
+            }
+            if (option != 0)
+            {
+                Console.WriteLine("\nPresiona cualquier letra para volver al menu...");
+                Console.ReadKey();
+            }
+        }
+    }
+}
+

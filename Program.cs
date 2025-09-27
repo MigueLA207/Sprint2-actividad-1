@@ -58,12 +58,13 @@ public class MainMenu
                         break;
                     
                     case 4:
-
+                        MedicalCareMenu mcC = new();
+                        mcC.show();
                         break;
                     
                     case 5:
                         break;
-
+                    
                     case 0:
                         Console.WriteLine("Saliendo del programa.");
                         break;

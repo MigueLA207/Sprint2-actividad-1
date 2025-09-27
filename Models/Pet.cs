@@ -9,4 +9,5 @@ public class Pet
     public int userId { get; set; }
     public User User { get; set; }
     public ICollection<Veterinarian> Veterinarians { get; set; }
+    public ICollection<MedialCare> MedicalCares { get; set; }
 }

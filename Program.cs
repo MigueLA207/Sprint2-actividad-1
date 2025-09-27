@@ -48,9 +48,13 @@ public class MainMenu
                         userC.show();
                         break;  
                     case 2:
+                        PetsMenu petC = new();
+                        petC.show();
                         break;
                     
                     case 3:
+                        VeterinarianMenu vetC = new();
+                        vetC.show();
                         break;
                     
                     case 4:

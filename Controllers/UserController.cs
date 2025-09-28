@@ -29,4 +29,82 @@ public class UserController
         }while(string.IsNullOrEmpty(name));
         
     }
+    public void ListUsers()
+    {
+        var users = _userService.GetAllUsers();
+        if(users.Count == 0)
+        {
+            Console.WriteLine("No hay usuarios registrados.");
+        }
+        else
+        {
+            Console.WriteLine("Lista de usuarios:");
+            foreach (var user in users)
+            {
+                Console.WriteLine($"ID: {user.Id}, Nombre: {user.Name}");
+            }
+        }
+        
+    }
+    
+    public void UpdateUser()
+    {
+        Console.WriteLine("Ingresa el ID del usuario a editar:");
+        string? input = Console.ReadLine();
+        if (int.TryParse(input, out int userId))
+        {
+            var user = _userService.GetUserById(userId);
+            if (user != null)
+            {
+                Console.WriteLine($"Usuario encontrado: ID: {user.Id}, Nombre: {user.Name}");
+                Console.WriteLine("Ingresa el nuevo nombre del usuario:");
+                string? newName = Console.ReadLine();
+                if (!string.IsNullOrEmpty(newName))
+                {
+                    user.Name = newName;
+                    _userService.UpdateUser(user);
+                    Console.WriteLine("Usuario actualizado exitosamente.");
+                }
+                else
+                {
+                    Console.WriteLine("Entrada invalida. El nombre no puede estar vacio.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Usuario no encontrado.");
+            }
+        }
+    }
+
+    public void DeleteUser()
+    {
+        Console.WriteLine("Ingresa el ID del usuario a eliminar:");
+        string? input = Console.ReadLine();
+        if (int.TryParse(input, out int userId))
+        {
+            var user = _userService.GetUserById(userId);
+            if (user != null)
+            {
+                
+                Console.WriteLine($"Usuario encontrado: ID: {user.Id}, Nombre: {user.Name}");
+                Console.WriteLine("¿Estas seguro que deseas eliminar este usuario? (s/n)");
+                string? confirmation = Console.ReadLine();
+                if (confirmation?.ToLower() == "s")
+                {
+                    _userService.DeleteUser(userId);
+                    Console.WriteLine("Usuario eliminado exitosamente.");
+                    
+                }
+                else
+                {
+                    Console.WriteLine("Eliminacion cancelada.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Usuario no encontrado.");
+            }
+        }
+    }
 }

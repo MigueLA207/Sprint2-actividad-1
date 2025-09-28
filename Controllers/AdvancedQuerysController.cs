@@ -67,7 +67,7 @@ public class AdvancedQuerysController
 
     public void VetWithMostMedicalCares()
     {
-        var moreMC = _AqService.GetVetWithMostMedicalCares(); 
+        var moreMC = _AqService.GetVetWithMostMedicalCares();
         if (moreMC == null)
         {
             Console.WriteLine("No hay veterinarios registrados o no hay atenciones medicas.");
@@ -75,6 +75,19 @@ public class AdvancedQuerysController
         else
         {
             Console.WriteLine($"El veterinario con mas atenciones medicas es {moreMC.Value.Vet.Name} con un total de {moreMC.Value.Count} atenciones.");
+        }
+    }
+    
+    public void ClientWithMostPets()
+    {
+        var morePets = _AqService.GetClientWithMostPets();
+        if (morePets == null)
+        {
+            Console.WriteLine("No hay clientes registrados o no hay mascotas.");
+        }
+        else
+        {
+            Console.WriteLine($"El cliente con mas mascotas es {morePets.Value.Client.Name} con un total de {morePets.Value.Count} mascotas.");
         }
     }
     

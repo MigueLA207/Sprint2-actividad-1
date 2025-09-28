@@ -179,10 +179,6 @@ public class VeterinarianMenu
     }
 }
 
-public class MedicalHistoryMenu
-{
-    
-}
 
 public class MedicalCareMenu
 {
@@ -198,6 +194,65 @@ public class MedicalCareMenu
             Console.WriteLine("2. Listar atenciones medicas.");
             Console.WriteLine("3. Editar atencion medica.");
             Console.WriteLine("4. Eliminar atencion medica.");
+            Console.WriteLine("0. Salir");
+
+            Console.Write("\nIngresa una opcion: ");
+            string? input = Console.ReadLine();
+
+            if (!int.TryParse(input, out option))
+            {
+                Console.WriteLine("Entrada invalida. Por favor ingresa un numero.");
+                option = -1;
+            }
+            else if (option < 0 || option > 4)
+            {
+                Console.WriteLine("Entrada invalida. Por favor intenta de nuevo.");
+            }
+            else
+            {
+                Console.Clear();
+                switch (option)
+                {
+                    case 1:
+                        mcController.CreateMedicalCare();
+                        break;
+                    case 2:
+                        mcController.ListMedicalCares();
+                        break;
+                    case 3:
+                        mcController.UpdateMedicalCare();
+                        break;
+                    case 4:
+                        mcController.DeleteMedicalCare();
+                        break;
+                    case 0:
+                        Console.WriteLine("Saliendo del menu de mascotas...");
+                        break;
+                }
+            }
+            if (option != 0)
+            {
+                Console.WriteLine("\nPresiona cualquier letra para volver al menu...");
+                Console.ReadKey();
+            }
+        }
+    }
+}
+
+public class advancedQueriesMenu
+{
+    private readonly AdvancedQuerysController AqController = new();
+
+    public void show()
+    {
+        int option = -1;
+        while (option != 0)
+        {
+            Console.Clear();
+            Console.WriteLine("1. Atenciones medicas por mascota.");
+            Console.WriteLine("2. Listar mascotas por cliente.");
+            Console.WriteLine("3. Veterinario con mas atenciones medicas.");
+            Console.WriteLine("4. Cliente con mas mascotas.");
             Console.WriteLine("0. Salir");
             
             Console.Write("\nIngresa una opcion: ");
@@ -218,17 +273,16 @@ public class MedicalCareMenu
                 switch (option)
                 {
                     case 1:
-                        mcController.CreateMedicalCare();
-                        // vetController.CreateVeterinarian();
+                        AqController.MedicalCaresByPet();
                         break;
                     case 2:
-                        mcController.ListMedicalCares();
+                        AqController.ListPetsByClient();
                         break;
                     case 3:
-                        // vetController.UpdateVeterinarian();
+                        AqController.VetWithMostMedicalCares();
                         break;
                     case 4:
-                        // vetController.DeleteVeterinarian();
+                        AqController.ClientWithMostPets();
                         break;
                     case 0:
                         Console.WriteLine("Saliendo del menu de mascotas...");

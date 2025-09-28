@@ -23,7 +23,7 @@ public class MainMenu
             Console.WriteLine("2. Gestion de mascotas.");
             Console.WriteLine("3. Gestion de veterinarios.");
             Console.WriteLine("4. Gestion de atenciones medicas.");
-            Console.WriteLine("5. Historial medico.");
+            Console.WriteLine("5. Consultas avanzadas.");
             Console.WriteLine("0. Exit");
 
             Console.Write("\nEnter an option: ");
@@ -61,10 +61,11 @@ public class MainMenu
                         MedicalCareMenu mcC = new();
                         mcC.show();
                         break;
-                    
                     case 5:
+                        advancedQueriesMenu aqC = new();
+                        aqC.show();
                         break;
-                    
+                                        
                     case 0:
                         Console.WriteLine("Saliendo del programa.");
                         break;

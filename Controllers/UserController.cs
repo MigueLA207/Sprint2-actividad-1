@@ -32,11 +32,19 @@ public class UserController
     public void ListUsers()
     {
         var users = _userService.GetAllUsers();
-        Console.WriteLine("Lista de usuarios:");
-        foreach (var user in users)
+        if(users.Count == 0)
         {
-            Console.WriteLine($"ID: {user.Id}, Nombre: {user.Name}");
+            Console.WriteLine("No hay usuarios registrados.");
         }
+        else
+        {
+            Console.WriteLine("Lista de usuarios:");
+            foreach (var user in users)
+            {
+                Console.WriteLine($"ID: {user.Id}, Nombre: {user.Name}");
+            }
+        }
+        
     }
     
     public void UpdateUser()

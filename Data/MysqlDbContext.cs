@@ -8,6 +8,8 @@ public class VeterinariaDbContext : DbContext
     public DbSet<Pet> Pets { get; set; }
     public DbSet<Veterinarian> Veterinarians { get; set; }
     public DbSet<MedicalHistory> MedicalHistories { get; set; }
+    public DbSet<MedialCare> MedicalCares { get; set; }
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseMySql(
@@ -30,5 +32,16 @@ public class VeterinariaDbContext : DbContext
         modelBuilder.Entity<Pet>()
             .HasMany(p => p.Veterinarians)
             .WithMany(v => v.Pets);
+        
+        modelBuilder.Entity<MedialCare>()
+            .HasOne(mc => mc.Pet)
+            .WithMany(p => p.MedicalCares)
+            .HasForeignKey(mc => mc.PetId);
+
+        modelBuilder.Entity<MedialCare>()
+            .HasOne(mc => mc.Veterinarian)
+            .WithMany(v => v.MedicalCares)
+            .HasForeignKey(mc => mc.VeterinarianId);
+
     }
 }
